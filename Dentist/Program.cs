@@ -30,6 +30,7 @@ builder.Services.AddScoped<IPatientService, PatientService>();
 
 builder.Services.AddScoped<ITurnRepository, TurnRepository>();
 builder.Services.AddScoped<ITurnServices, TurnService>();
+
 //builder.Services.AddSingleton<DataContext>();
 builder.Services.AddDbContext<DataContext>();
 

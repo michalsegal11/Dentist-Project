@@ -1,5 +1,7 @@
-﻿using Dentist.Core.Services;
+using Dentist.Core.Entities;
+using Dentist.Core.Services;
 using Microsoft.AspNetCore.Mvc;
+
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -20,7 +22,7 @@ namespace Dentist.Controllers
         [HttpGet]
         public IEnumerable<Patient> Get()
         {
-           return _context.GetList();
+            return (IEnumerable<Patient>)_context.GetList();
         }
 
         // GET api/<PatientsController>/5
@@ -53,7 +55,7 @@ namespace Dentist.Controllers
         }
 
 
-      
+
 
         // DELETE api/<EventsController>/5
         [HttpDelete("{id}")]

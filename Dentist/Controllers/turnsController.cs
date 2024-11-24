@@ -1,7 +1,4 @@
-﻿
-using Dentist.Core.Entities;
 using Dentist.Core.Services;
-using Dentist.Service;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -44,12 +41,14 @@ namespace Dentist.Controllers
             return value;
         }
 
+    
+
         // PUT api/<turnsController>/5
-        [HttpPut("{Id}")]
-        public turn Put(string Id, [FromBody] turn value)
+        [HttpPut("{Code}")]
+        public turn Put(string Code, [FromBody] turn value)
         {
-            var index = _context.getAll().FindIndex(e => e.Id.Equals(Id));
-            _context.getAll()[index] .IdPatient= value.IdPatient;
+            var index = _context.getAll().FindIndex(e => e.Id.Equals(Code));
+            _context.getAll()[index].IdPatient = value.IdPatient;
             _context.getAll()[index].IdDentist = value.IdDentist;
             _context.getAll()[index].Hour = value.Hour;
             _context.getAll()[index].Date = value.Date;
@@ -57,10 +56,10 @@ namespace Dentist.Controllers
         }
 
         // DELETE api/<turnsController>/5
-        [HttpDelete("{Id}")]
-        public void Delete(string Id)
+        [HttpDelete("{Code}")]
+        public void Delete(string Code)
         {
-            var index = _context.getAll().FindIndex(e => e.Id.Equals(Id));
+            var index = _context.getAll().FindIndex(e => e.Id.Equals(Code));
             _context.getAll().Remove(_context.getAll()[index]);
         }
     }

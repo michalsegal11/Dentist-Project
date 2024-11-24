@@ -1,7 +1,6 @@
-﻿
+
 using Dentist.Core.Entities;
 using Dentist.Core.Services;
-using Dentist.Service;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
