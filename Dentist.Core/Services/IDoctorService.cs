@@ -11,6 +11,9 @@ namespace Dentist.Core.Services
 {
     public interface IDoctorService
     {
-        public List<Doctors> GetList();
+        public IEnumerable<Doctors> GetList();
+        public Doctors Get(string id);
+        public Doctors Add(Doctors doctor);
+
     }
 }

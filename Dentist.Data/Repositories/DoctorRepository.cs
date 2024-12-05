@@ -1,11 +1,13 @@
 ﻿using Dentist.Core.Entities;
 using Dentist.Core.Repositories;
 using Dentist.Data;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 
 namespace Dentist.Data.Repositories
 {
@@ -17,9 +19,21 @@ namespace Dentist.Data.Repositories
         {
             _context = context;
         }
-        public List<Doctors> GetAll()
+        public IEnumerable<Doctors> GetAll()
         {
-            return _context.doctor.ToList();
+            return _context.doctor.Where(s => !string.IsNullOrEmpty(s.Name)) ;
+        }
+
+        public Doctors Get(string id)
+        {
+            return _context.doctor.FirstOrDefault(s => s.Id == id);
+        }
+
+        public Doctors Add(Doctors doctors)
+        {
+            _context.doctor.Add(doctors);
+            _context.SaveChanges();
+            return doctors;
         }
     }
 }

@@ -1,3 +1,4 @@
+using Dentist.Core.Entities;
 using Dentist.Core.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;

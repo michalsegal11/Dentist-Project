@@ -19,9 +19,19 @@ namespace Dentist.Service
             _DoctorRepository = doctorRepository;
         }
 
-        public List<Doctors> GetList()
+        public IEnumerable<Doctors> GetList()
         {
             return _DoctorRepository.GetAll();
+        }
+        public Doctors Get(string id)
+        {
+            return _DoctorRepository.Get(id);
+        }
+
+
+        public Doctors Add(Doctors doctors)
+        {
+            return _DoctorRepository.Add(doctors);
         }
     }
 }

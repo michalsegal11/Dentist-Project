@@ -32,12 +32,28 @@ namespace Dentist.API.Controllers
         }
 
 
+        [HttpGet("{id}")]
+        public ActionResult Get(string id)
+        {
+            var doctor = _doctorService.Get(id);
+            if (doctor == null)
+            {
+                return NotFound();
+            }
+            return Ok(doctor);
+        }
+
         // POST api/<doctorsController>
         [HttpPost]
-        public Doctors Post([FromBody] Doctors value)
+        public ActionResult Post([FromBody] Doctors value)
         {
-            _doctorService.GetList().Add(value);
-            return value;
+
+            var doctor = _doctorService.Get(value.Id);
+            if (doctor == null)
+            {
+                return Ok(_doctorService.Add(value));
+            }
+            return Conflict();
         }
 
 
@@ -45,19 +61,19 @@ namespace Dentist.API.Controllers
         [HttpPut("{id}")]
         public Doctors Put(string id, [FromBody] Doctors value)
         {
-            var index = _doctorService.GetList().FindIndex(e => e.Id == id);
-            _doctorService.GetList()[index].Name = value.Name;
-            _doctorService.GetList()[index].Adress = value.Adress;
-            _doctorService.GetList()[index].Specialization = value.Specialization;
-            return _doctorService.GetList()[index];
+            var doctor = _doctorService.Get(value.Id);
+            doctor.Name = value.Name;
+            doctor.Adress = value.Adress;
+            doctor.Specialization = value.Specialization;
+            return doctor;
         }
 
         // DELETE api/<doctorsController>/5
         [HttpDelete("{id}")]
         public void Delete(string id)
         {
-            var index = _doctorService.GetList().FindIndex(e => e.Id == id);
-            _doctorService.GetList().Remove(_doctorService.GetList()[index]);
+            //var index = _doctorService.GetList().FindIndex(e => e.Id == id);
+            //_doctorService.GetList().Remove(_doctorService.GetList()[index]);
         }
 
 
