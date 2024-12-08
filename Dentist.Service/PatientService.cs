@@ -17,13 +17,22 @@ namespace Dentist.Service
             _PatientRepository = patientRepository;
         }
 
-        public List<Patient> GetList()
+        public IEnumerable<Patient> GetList()
         {
             //לוגיקה עיסקית
             //קבלת נתונים מה db
             //לוגיקה עסקית
             return _PatientRepository.GetAll();
 
+        }
+        public Patient Get(string id)
+        {
+            return _PatientRepository.Get(id);
+        }
+
+        public Patient Add(Patient patient)
+        {
+            return _PatientRepository.Add(patient);
         }
     }
 }

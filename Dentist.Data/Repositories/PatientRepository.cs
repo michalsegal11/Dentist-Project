@@ -16,9 +16,20 @@ namespace Dentist.Data.Repositories
         {
             _context = context;
         }
-        public List<Patient> GetAll()
+        public IEnumerable<Patient> GetAll()
         {
-            return _context.patients.ToList();
+            return _context.patients.Where(s => !string.IsNullOrEmpty(s.Name));
+        }
+        public Patient Get(string id)
+        {
+            return _context.patients.FirstOrDefault(s => s.Id == id);
+        }
+
+        public Patient Add(Patient patient)
+        {
+            _context.patients.Add(patient);
+            _context.SaveChanges();
+            return patient;
         }
     }
 }

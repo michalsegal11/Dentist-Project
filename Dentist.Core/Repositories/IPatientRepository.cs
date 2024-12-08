@@ -9,6 +9,12 @@ namespace Dentist.Core.Repositories
 {
     public interface IPatientRepository
     {
-        public List<Patient> GetAll();
+        public IEnumerable<Patient> GetAll();
+
+        public Patient Get(string id);
+
+        public Patient Add(Patient patient);
+
+
     }
 }

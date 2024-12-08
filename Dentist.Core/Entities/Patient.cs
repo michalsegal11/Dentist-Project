@@ -1,4 +1,6 @@
-﻿namespace Dentist
+﻿using dentist;
+
+namespace Dentist
 {
     public class Patient
     {
@@ -7,6 +9,10 @@
        public DateTime DateBorn { get; set; }
        public int Age { get; set; }
         public bool Status { get; set; }
+
+        public turn turn { get; set; }
+
+        public int IdTurn { get; set; }
         
     }
 }
