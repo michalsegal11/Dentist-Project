@@ -1,4 +1,6 @@
 ﻿using dentist;
+using Dentist;
+using Dentist.Core.Entities;
 
 namespace Dentist
 {
@@ -10,9 +12,9 @@ namespace Dentist
        public int Age { get; set; }
         public bool Status { get; set; }
 
-        public turn turn { get; set; }
+        public List<turn>turn { get; set; }
 
-        public int IdTurn { get; set; }
+
         
     }
 }

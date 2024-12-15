@@ -1,5 +1,4 @@
-﻿using Dentist;
-using Dentist.Core.Entities;
+﻿using dentist;
 using Dentist.Core.Repositories;
 using System;
 using System.Collections.Generic;
@@ -15,13 +14,28 @@ namespace Dentist.Data.Repositories
         private readonly DataContext _context;
         public TurnRepository(DataContext contex)
         {
-            _context = contex;
-                
+            _context = contex;     
         }
-
-        public List<turn> getAll()
+        public IEnumerable<turn> getAll()
         {
-            return _context.turns.ToList();
+            return _context.turns;
+        }
+        public turn get(int id)
+        {
+            return _context.turns.FirstOrDefault(t => t.Id == id);
+        }
+        public turn add(turn turn)
+        {
+            _context.turns.Add(turn);
+            _context.SaveChanges();
+            return turn;
+        }
+        public void delete(int id)
+        {
+        }
+        public void update(int IdPatient,DateTime hour,DateTime date)
+        {
+            
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using Dentist;
-using Dentist.Core.Entities;
+﻿using dentist;
 using Dentist.Core.Repositories;
 using Dentist.Core.Services;
 using System;
@@ -21,11 +20,26 @@ namespace Dentist.Service
         }
 
 
-        public List<turn> getAll()
+        public IEnumerable<turn> getAll()
         {
             return _ITurnRepository.getAll();
         }
-
+        public turn get(int id)
+        {
+            return _ITurnRepository.get(id);
+        }
+        public turn add(turn turn)
+        {
+            return _ITurnRepository.add(turn);
+        }
+        public void delete(int id)
+        {
+            _ITurnRepository.delete(id);
+        }
+        public void update(int IdPatient, DateTime hour, DateTime date)
+        {
+            _ITurnRepository.update(IdPatient, hour, date);
+        }
     }
 
 }

@@ -1,4 +1,5 @@
 ﻿
+using dentist;
 using Dentist;
 using Dentist.Core.Entities;
 using Microsoft.EntityFrameworkCore;
