@@ -1,11 +1,9 @@
-﻿using Dentist;
-using Dentist.Core.Entities;
+﻿using Dentist.Core.Entities;
 
-namespace dentist
+namespace Dentist.API.Models
 {
-    public class turn
+    public class TurnPostModel
     {
-        public int Id { get; set; }
         public string IdPatient { get; set; }
         public string IdDoctor { get; set; }
         public Doctors doctor { get; set; }

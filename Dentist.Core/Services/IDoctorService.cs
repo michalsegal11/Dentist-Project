@@ -15,5 +15,8 @@ namespace Dentist.Core.Services
         public Doctors Get(string id);
         public Doctors Add(Doctors doctor);
 
+        public Task<IEnumerable<Doctors>> GetAllAsync();
+        public Task<Doctors> AddAsync(Doctors doctors);
+
     }
 }

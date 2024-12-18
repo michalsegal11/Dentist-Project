@@ -35,5 +35,16 @@ namespace Dentist.Data.Repositories
             _context.SaveChanges();
             return doctors;
         }
+        public async Task<IEnumerable<Doctors>> GetAllAsync()
+        {
+            return await _context.doctor.Where(s => !string.IsNullOrEmpty(s.Name)).Include(s => s.Id).ToListAsync();
+        }
+
+        public async Task<Doctors> AddAsync(Doctors doctor)
+        {
+            _context.doctor.Add(doctor);
+            await _context.SaveChangesAsync();
+            return doctor;
+        }
     }
 }

@@ -13,7 +13,7 @@ namespace Dentist.Core.Entities
         public string Id { get; set; }
         public string Name { get; set; }
         public string Adress { get; set; }
-        public string Specialization { get; set; }
+        public string Specialization { get; set; }    
         public List<turn>turns { get; set; }
         public string Status { get; set; }
     }

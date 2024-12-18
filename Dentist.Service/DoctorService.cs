@@ -29,9 +29,24 @@ namespace Dentist.Service
         }
 
 
+
+
         public Doctors Add(Doctors doctors)
         {
             return _DoctorRepository.Add(doctors);
+        }
+
+
+        public async Task<IEnumerable<Doctors>> GetAllAsync()
+        {
+            //לוגיקה עיסקית
+            //קבלת נתונים מה db
+            //לוגיקה עסקית
+            return await _DoctorRepository.GetAllAsync();
+        }
+        public async Task<Doctors> AddAsync(Doctors doctors)
+        {
+            return await _DoctorRepository.AddAsync(doctors);
         }
     }
 }

@@ -17,15 +17,14 @@ namespace Dentist.Service
             _PatientRepository = patientRepository;
         }
 
-        public IEnumerable<Patient> GetList()
+        public async Task<IEnumerable<Patient>> GetAllAsync()
         {
             //לוגיקה עיסקית
             //קבלת נתונים מה db
             //לוגיקה עסקית
-            return _PatientRepository.GetAll();
-
+            return await _PatientRepository.GetAllAsync();
         }
-        public Patient Get(string id)
+        public Patient Get(int id)
         {
             return _PatientRepository.Get(id);
         }
@@ -33,6 +32,11 @@ namespace Dentist.Service
         public Patient Add(Patient patient)
         {
             return _PatientRepository.Add(patient);
+        }
+
+        public async Task<Patient> AddAsync(Patient patient)
+        {
+            return await _PatientRepository.AddAsync(patient);
         }
     }
 }

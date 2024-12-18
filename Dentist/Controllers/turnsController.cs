@@ -9,6 +9,8 @@ namespace dentist.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+
+    //////////////////////////hiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii
     public class turnsController : ControllerBase
     {
         public readonly ITurnServices _context;
@@ -17,6 +19,7 @@ namespace dentist.Controllers
         {
             _context = context;
         }
+       
 
 
         // GET: api/<turnsController>
@@ -57,7 +60,7 @@ namespace dentist.Controllers
         public void Put(string Code, [FromBody] turn value)
         {
             //var index = _context.getAll().FindIndex(e => e.Id.Equals(Code));
-            //_context.getAll()[index] .IdPatient= value.IdPatient;
+            //_context.getAll()[index].IdPatient = value.IdPatient;
             //_context.getAll()[index].IdDentist = value.IdDentist;
             //_context.getAll()[index].Hour = value.Hour;
             //_context.getAll()[index].Date = value.Date;
