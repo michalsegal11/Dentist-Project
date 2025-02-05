@@ -28,9 +28,6 @@ namespace Dentist.Service
             return _DoctorRepository.Get(id);
         }
 
-
-
-
         public Doctors Add(Doctors doctors)
         {
             return _DoctorRepository.Add(doctors);

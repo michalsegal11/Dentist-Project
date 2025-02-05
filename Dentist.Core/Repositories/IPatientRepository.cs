@@ -9,11 +9,11 @@ namespace Dentist.Core.Repositories
 {
     public interface IPatientRepository
     {
-        public IEnumerable<Patient> GetAll();
+        //public IEnumerable<Patient> GetAll();
 
         public Patient Get(int id);
 
-        public Patient Add(Patient patient);
+        //public Patient Add(Patient patient);
         public Task<IEnumerable<Patient>> GetAllAsync();
 
         public Task<Patient> AddAsync(Patient student);

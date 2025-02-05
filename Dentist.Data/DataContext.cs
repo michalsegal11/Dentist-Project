@@ -3,6 +3,7 @@ using dentist;
 using Dentist;
 using Dentist.Core.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
@@ -21,10 +22,20 @@ namespace Dentist.Data
         public DbSet<turn> turns { get; set; }
 
         public DbSet<Patient> patients { get; set; }
- 
+
+        private readonly IConfiguration _configuration;
+        public DataContext(IConfiguration configuration)
+        {
+            _configuration = configuration;
+            
+        }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=DentistM");
+
+
+  
+            optionsBuilder.UseSqlServer(_configuration["ConnectionString"]);
 
         }
 

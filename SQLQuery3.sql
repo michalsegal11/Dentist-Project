@@ -1,0 +1,7 @@
+﻿ALTER TABLE dbo.doctor
+
+ALTER COLUMN email VARCHAR(100) NOT NULL;
+
+ALTER TABLE dbo.doctor
+
+ALTER COLUMN password VARCHAR(100) NOT NULL;

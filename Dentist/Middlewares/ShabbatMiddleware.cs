@@ -20,7 +20,7 @@
             {
                 await context.Response.WriteAsync(new HttpResponseMessage
                 {
-                    StatusCode = System.Net.HttpStatusCode.Status400BadRequest,
+                    StatusCode = System.Net.HttpStatusCode.BadRequest,
                     Content = new StringContent("Error Message...", System.Text.Encoding.UTF8, "application/json")
                 }.ToString());
             }

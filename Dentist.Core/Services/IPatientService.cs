@@ -9,11 +9,13 @@ namespace Dentist.Core.Services
 {
     public interface IPatientService
     {
-        public IEnumerable<Patient> GetList();
+  
+        public Task<IEnumerable<Patient>> GetAllAsync();
 
+        public Patient Get(int id);
 
-        public Patient Get(string id);
+        //public Patient Add(Patient patient);
+        public Task<Patient> AddAsync(Patient student);
 
-        public Patient Add(Patient patient);
     }
 }

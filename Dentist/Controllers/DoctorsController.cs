@@ -7,6 +7,7 @@ using Dentist.Api.Models;
 using Dentist.Core;
 using Dentist.Core.DTOs;
 using Microsoft.Extensions.Hosting;
+using System;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -35,15 +36,15 @@ namespace Dentist.API.Controllers
 
         public async Task<ActionResult> Get()
         {
-         
-            //5
-            var doctors = _doctorService.GetAllAsync();
-            //await Task.WhenAll(x, doctors);
+
+            var doctors =  _doctorService.GetAllAsync();
+            await Task.WhenAll(doctors);
             var doctorsDto = _mapper.Map<IEnumerable<DoctorDto>>(doctors.Result);
             return Ok(doctorsDto);
 
-
-
+            //var doctors = _doctorService.GetAllAsync();
+            
+            //return Ok(doctorsDto);
 
         }
 
@@ -64,8 +65,9 @@ namespace Dentist.API.Controllers
         [HttpPost]
         public async Task<ActionResult> Post([FromBody] DoctorPostModel value)
         {
+
+            var doctor = new Doctors { Id= value.Id,Name = value.Name, Adress = value.Adress, Specialization = value.Specialization };
           
-            var doctor  = new Doctors { Name = value.Name, Adress = value.Adress, Specialization = value.Specialization};
             var d = await _doctorService.AddAsync(doctor);
             return Ok(d);
 

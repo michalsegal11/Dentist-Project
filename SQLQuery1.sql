@@ -1,0 +1,1 @@
+﻿GRANT SELECT, INSERT, UPDATE, DELETE ON dbo.Doctors TO michal;

@@ -1,4 +1,5 @@
-﻿using Dentist.Core.Entities;
+﻿using dentist;
+using Dentist.Core.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,7 @@ namespace Dentist.Core.DTOs
         public string Name { get; set; }
         public string Adress { get; set; }
         public string Specialization { get; set; }
-        public TurnDoctorDto turn { get; set; }
+        public List<TurnDoctorDto> turns { get; set; }
+        public bool Status { get; set; }
     }
 }

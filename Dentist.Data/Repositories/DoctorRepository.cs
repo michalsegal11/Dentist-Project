@@ -21,7 +21,7 @@ namespace Dentist.Data.Repositories
         }
         public IEnumerable<Doctors> GetAll()
         {
-            return _context.doctor.Where(s => !string.IsNullOrEmpty(s.Name)) ;
+            return _context.doctor.Where(s => !string.IsNullOrEmpty(s.Name));
         }
 
         public Doctors Get(string id)
@@ -37,7 +37,7 @@ namespace Dentist.Data.Repositories
         }
         public async Task<IEnumerable<Doctors>> GetAllAsync()
         {
-            return await _context.doctor.Where(s => !string.IsNullOrEmpty(s.Name)).Include(s => s.Id).ToListAsync();
+            return await _context.doctor.Where(s => !string.IsNullOrEmpty(s.Name)).ToListAsync();
         }
 
         public async Task<Doctors> AddAsync(Doctors doctor)

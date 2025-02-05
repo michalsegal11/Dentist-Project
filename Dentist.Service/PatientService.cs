@@ -29,10 +29,10 @@ namespace Dentist.Service
             return _PatientRepository.Get(id);
         }
 
-        public Patient Add(Patient patient)
-        {
-            return _PatientRepository.Add(patient);
-        }
+        //public Patient Add(Patient patient)
+        //{
+        //    return _PatientRepository.Add(patient);
+        //}
 
         public async Task<Patient> AddAsync(Patient patient)
         {
