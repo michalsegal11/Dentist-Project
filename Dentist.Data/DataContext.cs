@@ -22,6 +22,7 @@ namespace Dentist.Data
         public DbSet<turn> turns { get; set; }
 
         public DbSet<Patient> patients { get; set; }
+        public DbSet<User> User { get; set; }
 
         private readonly IConfiguration _configuration;
         public DataContext(IConfiguration configuration)

@@ -8,6 +8,9 @@ using Dentist.Core;
 using Dentist.Core.DTOs;
 using Microsoft.Extensions.Hosting;
 using System;
+using Microsoft.AspNetCore.Authorization;
+using Dentist.Service;
+using System.Numerics;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -15,16 +18,19 @@ namespace Dentist.API.Controllers
 {
 
     [Route("api/[controller]")]
+    [Authorize(Roles = "doctor")]
     [ApiController]
+   
     public class doctorsController : ControllerBase
     {
         private readonly IDoctorService _doctorService;
         private readonly IMapper _mapper;
+        private readonly IUserService _userService;
 
-
-        public doctorsController(IDoctorService doctorService, IMapper mapper)
+        public doctorsController(IDoctorService doctorService, IUserService userService, IMapper mapper)
         {
             _doctorService = doctorService;
+            _userService = userService;
             _mapper = mapper;
         }
 
@@ -33,7 +39,7 @@ namespace Dentist.API.Controllers
 
         // GET: api/<doctorsController>
         [HttpGet]
-
+        [AllowAnonymous]
         public async Task<ActionResult> Get()
         {
 
@@ -57,40 +63,45 @@ namespace Dentist.API.Controllers
             {
                 return NotFound();
             }
-            var doctorDto = _mapper.Map<DoctorDto>(doctor);
-            return Ok(doctorDto);
+            
+            return Ok(doctor);
         }
 
         // POST api/<doctorsController>
         [HttpPost]
         public async Task<ActionResult> Post([FromBody] DoctorPostModel value)
         {
-
-            var doctor = new Doctors { Id= value.Id,Name = value.Name, Adress = value.Adress, Specialization = value.Specialization };
-          
-            var d = await _doctorService.AddAsync(doctor);
+            var user = new User {Id=value.Id, UserName = value.Name, Password = value.Password, Role = eRole.doctor };
+            var User1 = await _userService.AddUserAsync(user);
+            var newDoctor = _mapper.Map<Doctors>(value);
+            newDoctor.user = User1;
+            newDoctor.Id = Guid.NewGuid().ToString();
+            var doctor = await _doctorService.Get(newDoctor.Id);
+            if (doctor != null)
+            {
+                return Conflict();
+            }
+            var d = await _doctorService.AddAsync(newDoctor);
             return Ok(d);
 
-            //var d = await _doctorService.AddAsync(student);
-            //return Ok(d);
-            //if (doctor == null)
-            //{
-            //    return Ok(_doctorService.Add(value));
-            //}
-            //return Conflict();
         }
 
 
         // PUT api/<doctorsController>/5
         [HttpPut("{id}")]
-       
-        public Doctors Put(string id, [FromBody] Doctors value)
+
+        public async Task<ActionResult> Put(string id, DoctorPostModel value)
         {
             var doctor = _doctorService.Get(value.Id);
-            doctor.Name = value.Name;
-            doctor.Adress = value.Adress;
-            doctor.Specialization = value.Specialization;
-            return doctor;
+            var newDoctor = _mapper.Map<Doctors>(value);
+            if (doctor == null)
+            {
+                return Conflict();
+            }
+            await _doctorService.UpdateAsync(id, newDoctor);
+            return Ok();
+
+
         }
 
         // DELETE api/<doctorsController>/5

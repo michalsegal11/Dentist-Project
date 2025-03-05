@@ -14,7 +14,6 @@ namespace Dentist.Core.DTOs
         public string Name { get; set; }
         public string Adress { get; set; }
         public string Specialization { get; set; }
-        public List<TurnDoctorDto> turns { get; set; }
         public bool Status { get; set; }
     }
 }

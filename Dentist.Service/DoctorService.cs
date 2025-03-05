@@ -6,6 +6,7 @@ using Dentist.Core.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -23,7 +24,7 @@ namespace Dentist.Service
         {
             return _DoctorRepository.GetAll();
         }
-        public Doctors Get(string id)
+        public async Task<Doctors> Get(string id)
         {
             return _DoctorRepository.Get(id);
         }
@@ -44,6 +45,11 @@ namespace Dentist.Service
         public async Task<Doctors> AddAsync(Doctors doctors)
         {
             return await _DoctorRepository.AddAsync(doctors);
+        }
+
+        public async Task UpdateAsync(string id, Doctors Doctor)
+        {
+            await _DoctorRepository.UpdateAsync(id, Doctor);
         }
     }
 }

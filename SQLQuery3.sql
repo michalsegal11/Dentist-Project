@@ -1,7 +1,5 @@
-﻿ALTER TABLE dbo.doctor
-
-ALTER COLUMN email VARCHAR(100) NOT NULL;
-
-ALTER TABLE dbo.doctor
-
-ALTER COLUMN password VARCHAR(100) NOT NULL;
+﻿INSERT INTO [dbo].[User] (Id, UserName, Password, Role)
+VALUES 
+('1', 'm', '123456', 0),
+('2', 'mi', 'password123', 1),
+('3', 'mich', 'password456', 1);

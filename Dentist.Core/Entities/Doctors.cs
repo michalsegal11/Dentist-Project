@@ -12,12 +12,12 @@ namespace Dentist.Core.Entities
 
         public string Id { get; set; }
         public string Name { get; set; }
-        public string email {  get; set; }
-        public string password { get; set; }
         public string Adress { get; set; }
         public string Specialization { get; set; }    
         public List<turn>turns { get; set; }
         public bool Status { get; set; }
+        public User user { get; set; }
+
     }
-}
+} 
 

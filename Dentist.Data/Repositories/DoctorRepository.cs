@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -45,6 +46,21 @@ namespace Dentist.Data.Repositories
             _context.doctor.Add(doctor);
             await _context.SaveChangesAsync();
             return doctor;
+        }
+
+
+        public async Task UpdateAsync(string id, Doctors doctor)
+        {
+
+            var Doctor = _context.doctor.FirstOrDefault(x => x.Id == id);
+            Doctor.Id = doctor.Id;
+            Doctor.Adress = doctor.Adress;
+            Doctor.Name = doctor.Name;
+            Doctor.Status = doctor.Status;
+            Doctor.Specialization = doctor.Specialization;
+
+            await _context.SaveChangesAsync();
+
         }
     }
 }

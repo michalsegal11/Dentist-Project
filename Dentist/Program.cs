@@ -2,6 +2,7 @@
 
 
 
+using Dentist.Api;
 using Dentist.Core;
 using Dentist.Core.Repositories;
 using Dentist.Core.Services;
@@ -93,13 +94,14 @@ builder.Services.AddScoped<IPatientService, PatientService>();
 builder.Services.AddScoped<ITurnRepository, TurnRepository>();
 builder.Services.AddScoped<ITurnServices, TurnService>();
 
-
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IUserService, UserService>();
 
 
 //builder.Services.AddSingleton<DataContext>();
 builder.Services.AddDbContext<DataContext>();
 
-builder.Services.AddAutoMapper(typeof(MappingProfile));
+builder.Services.AddAutoMapper(typeof(MappingProfile), typeof(MappingPostModel));
 
 var app = builder.Build();
 
